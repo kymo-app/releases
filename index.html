@@ -248,6 +248,8 @@
   .phone .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 2px; padding-top: 9px; border-top: 2px solid var(--line); font: 700 9.5px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; text-align: center; color: var(--ink-3); }
   .phone .tabs b { color: var(--ink); }
   .soon { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 24px; font-weight: 700; font-size: 15px; }
+  .soon .btn.primary { padding: 10px 16px; }
+  .android-note { margin-top: 10px; font-size: 14px; opacity: .8; }
   [hidden] { display: none !important; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 </style>
@@ -565,12 +567,13 @@
       <p>El celular es a Kymo lo que el reloj al teléfono: te avisa a tiempo, lo miras de un vistazo y actúas con uno o dos toques. Lo que pide más calma, como planear o configurar, se sigue en el computador.</p>
       <ul class="ticks">
         <li><b>Hoy, de un vistazo</b>: la carga de tu semana y lo que no puede esperar.</li>
-        <li><b>Respondes ahí mismo</b>: aceptas o descartas un pedido, y una alerta la marcas como vista o la dejas para revisar en el computador.</li>
+        <li><b>Decides deslizando</b>: aceptas o descartas un pedido, te encargas de un fallo o lo escalas con tu manager, y despejas tu día en un minuto.</li>
         <li><b>Tu semana en la mano</b>: marcas lo que terminaste y mueves una tarea a otra semana viendo cuánto le cabe a cada una.</li>
         <li><b>Cierras la semana</b> con un toque por cada cosa que ya quedó lista.</li>
         <li><b>Tus 1:1, camino a la reunión</b>: quién necesita atención y la preparación de cada conversación, cifrada para que solo la abras tú.</li>
       </ul>
-      <div class="soon"><span class="ptag pro">Pro</span><span class="ptag team">Team</span><span>Muy pronto en iPhone y Android</span></div>
+      <div class="soon"><span class="ptag pro">Pro</span><span class="ptag team">Team</span><a class="btn primary dl-android" href="https://github.com/kymo-app/releases/releases/download/android/Kymo-Android.apk"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.2 9h9.6c.5 0 .9.4.9.9v6.3c0 .5-.4.9-.9.9h-.8v2.5c0 .6-.5 1-1 1s-1-.4-1-1v-2.5h-3v2.5c0 .6-.5 1-1 1s-1-.4-1-1v-2.5h-.8c-.5 0-.9-.4-.9-.9V9.9c0-.5.4-.9.9-.9zM4.6 9.2c.6 0 1 .4 1 1v4.6c0 .6-.4 1-1 1s-1-.4-1-1v-4.6c0-.6.4-1 1-1zm14.8 0c.6 0 1 .4 1 1v4.6c0 .6-.4 1-1 1s-1-.4-1-1v-4.6c0-.6.4-1 1-1zM15.3 3.4l1-1.5c.1-.1 0-.3-.1-.3-.1-.1-.3 0-.3.1l-1 1.5c-.9-.4-1.8-.6-2.9-.6s-2 .2-2.9.6L8.1 1.7c-.1-.1-.2-.2-.3-.1-.1 0-.2.2-.1.3l1 1.5C7.2 4.2 6.3 5.6 6.3 7.2v.8h11.4v-.8c0-1.6-.9-3-2.4-3.8zM9.6 6.1c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7zm4.8 0c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7z"/></svg><span>Descargar para Android</span></a><span>iPhone, muy pronto</span></div>
+      <p class="android-note">En Android, la primera vez te pide permitir instalar apps de fuentes desconocidas: Kymo todavía no está en Play Store. Luego la vinculas con el código que te da Kymo en tu computador.</p>
       <div class="plan-note">
         <div><span class="ptag team">Team</span><span>Los 1:1 y el equipo, para quien lo lidera, y el mapa del sistema en Alertas.</span></div>
       </div>
@@ -792,6 +795,14 @@
       var w = p.querySelector('.dl-win'), m = p.querySelector('.dl-mac');
       if (intel) m.href = base + 'Kymo-Mac-x64.dmg';
       if (mac) p.insertBefore(m, w);
+    });
+    if (/Android/.test(ua)) pairs.forEach(function (p) {
+      var a = document.createElement('a');
+      a.className = 'btn primary dl-android';
+      a.href = 'https://github.com/kymo-app/releases/releases/download/android/Kymo-Android.apk';
+      a.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.2 9h9.6c.5 0 .9.4.9.9v6.3c0 .5-.4.9-.9.9h-.8v2.5c0 .6-.5 1-1 1s-1-.4-1-1v-2.5h-3v2.5c0 .6-.5 1-1 1s-1-.4-1-1v-2.5h-.8c-.5 0-.9-.4-.9-.9V9.9c0-.5.4-.9.9-.9zM4.6 9.2c.6 0 1 .4 1 1v4.6c0 .6-.4 1-1 1s-1-.4-1-1v-4.6c0-.6.4-1 1-1zm14.8 0c.6 0 1 .4 1 1v4.6c0 .6-.4 1-1 1s-1-.4-1-1v-4.6c0-.6.4-1 1-1zM15.3 3.4l1-1.5c.1-.1 0-.3-.1-.3-.1-.1-.3 0-.3.1l-1 1.5c-.9-.4-1.8-.6-2.9-.6s-2 .2-2.9.6L8.1 1.7c-.1-.1-.2-.2-.3-.1-.1 0-.2.2-.1.3l1 1.5C7.2 4.2 6.3 5.6 6.3 7.2v.8h11.4v-.8c0-1.6-.9-3-2.4-3.8zM9.6 6.1c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7zm4.8 0c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7z"/></svg><span>Descargar para Android</span>';
+      p.insertBefore(a, p.firstChild);
+      p.style.gridTemplateColumns = '1fr';
     });
     if (mac) document.getElementById('win-note').hidden = true;
     else if (/Windows/.test(ua)) document.getElementById('mac-note').hidden = true;
